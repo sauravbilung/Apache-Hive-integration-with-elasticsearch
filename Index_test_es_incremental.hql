@@ -4,7 +4,7 @@ ADD JAR hdfs://hadoopnn/location_of_jar_file/elasticsearch-hadoop-hive-7.5.0.jar
 ADD JAR hdfs://hadoopnn/location_of_jar_file/commons-httpclient-3.0.1.jar;
 
 
---------------------- Final table pointing to Elastic Search Index --------------------
+--------------------- Final table pointing to Elasticsearch Index --------------------
 
 CREATE EXTERNAL TABLE IF NOT EXISTS es_final(
 id INT,
@@ -27,7 +27,8 @@ TBLPROPERTIES(
 'es.write.rest.error.handlers'='log',
 'es.write.rest.error.handler.log.logger.name'='BulkErrors');
 
------------ Prefinal table which has similar data as above. Used for identifying latest records -----------
+-------- Prefinal table. It has similar data as that of final. Used for identifying the latest records -------
+-------- It gets the lastest records from Input Table which is then added to the final table ------------------
 
 CREATE TABLE IF NOT EXISTS es_prefinal(
 id INT,
